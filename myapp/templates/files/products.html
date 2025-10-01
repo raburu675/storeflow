@@ -1,0 +1,50 @@
+{% extends 'files/base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+    <div class="relative w-full">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        {% for product in products %}
+
+            {% if product.is_sale %}
+                <div class="border border-black rounded p-4">
+                    <div class="flex w-full justify-between">
+                        <h2 class="text-sm font-semibold">{{ product.name }}</h2>
+                        <h2 class="text-sm font-semibold text-red-400">SALE !!!</h2>
+                    </div>
+                    <div class="h-24 border border-gray-400 w-full mb-2">
+                        <img src="" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex">
+                        <strike >
+                        <p class="text-xs font-semibold mb-2 text-red-400">price ksh: {{ product.price }}</p>
+                        </strike>
+                        &nbsp;                                             
+                        <p class="text-xs font-semibold mb-2 text-xs">price ksh: {{product.sale_price}} </p>
+                    </div>
+                    <div class="flex w-full justify-between">
+                        <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Add to Cart</button>
+                        <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Buy Now</button>
+                    </div>
+                </div>
+            {% else %}
+                <div class="border border-black rounded p-4">
+                    <h2><a href="" class="text-sm font-semibold">{{ product.name }}</a></h2>
+                    <div class="h-24 border border-gray-400 w-full mb-2">
+                        <img src="" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-xs font-semibold mb-2">price ksh :{{ product.price }}</p>
+                    <div class="flex w-full justify-between">
+                        <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Add to Cart</button>
+                        <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Buy Now</button>
+                    </div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

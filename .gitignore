@@ -1,0 +1,22 @@
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Sensitive Data / Secrets
+db.sqlite3
+.env
+local_settings.py
+
+# Python Compilation
+__pycache__/
+*.pyc
+*.log
+
+# Django Output
+media/
+staticfiles/
+
+# OS and Editors
+.DS_Store
+*~

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+</head>
+<body>
+    <header>
+        <h1>MY DJANGO ECOMMERCE WEBSITE</h1>
+    </header>
+
+    <nav class='w-full flex bg-gray-200 justify-between '>
+        <div>
+            <a href="{% url 'home' %}" class="text-red-800 text-sm font-semibold">Home</a>
+            <a href="{% url 'about' %}" class="text-red-800 text-sm font-semibold">About</a>
+            {% if user.is_authenticated %}
+               <a href="{% url 'logout' %}" class="text-red-800 text-sm font-semibold">Logout</a>
+            {% else %}
+               <a href="{% url 'login' %}" class="text-red-800 text-sm font-semibold">Login</a>            
+            {% endif %}
+        </div>        
+        <h2 class="text-red-400">CART</h2>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>   
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>
