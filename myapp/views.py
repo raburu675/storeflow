@@ -3,6 +3,7 @@ from .models import Product
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages 
+from django.contrib.auth.forms import UserCreationForm
 
 def home(request):
     products = Product.objects.all().order_by("date")
@@ -10,6 +11,9 @@ def home(request):
 
 def about(request):
     return render(request, 'files/about.html' )
+
+def blog(request):
+    return render(request, 'files/blog.html')
 
 @csrf_protect
 def login_user(request):
@@ -32,4 +36,20 @@ def logout_user(request):
     logout(request)
     # message.success(request, "you have been logged out")
     return redirect('home')
+
+def register_user(request):    
+    if request.method == 'POST':    
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request,("registration succesfull") )
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+        
+    return render(request, 'files/register_user.html',{'form':form})
     

@@ -10,21 +10,25 @@
 </head>
 <body>
     <header>
-        <h1>MY DJANGO ECOMMERCE WEBSITE</h1>
+        
     </header>
 
-    <nav class='w-full flex bg-gray-200 justify-between '>
-        <div>
-            <a href="{% url 'home' %}" class="text-red-800 text-sm font-semibold">Home</a>
-            <a href="{% url 'about' %}" class="text-red-800 text-sm font-semibold">About</a>
+    <nav class='fixed top-0 z-50 w-full flex justify-between py-2 bg-blue-400 text-white '>
+        <div class="mx-4 flex items-center">
+            <h1 class="text-xl font-semibold mx-4 pY-6">DJANGO ECOMMERCE</h1>            
+            <a href="{% url 'home' %}" class="text-sm font-semibold mx-4">Home</a>
+            <a href="{% url 'about' %}" class="text-sm font-semibold mx-4">About</a>
+            <a href="{% url 'blog' %}" class="text-sm font-semibold mx-4">Blog</a>            
             {% if user.is_authenticated %}
-               <a href="{% url 'logout' %}" class="text-red-800 text-sm font-semibold">Logout</a>
+            <a href="{% url 'logout' %}" class="text-sm font-semibold mx-4">Logout</a>
             {% else %}
-               <a href="{% url 'login' %}" class="text-red-800 text-sm font-semibold">Login</a>            
-            {% endif %}
+            <a href="{% url 'login' %}" class="text-sm font-semibold mx-4">Login</a>            
+            <a href="{% url 'register' %}" class="text-sm font-semibold mx-4">Register</a>            
+            {% endif %}           
+            <input class="px-6 border py-1 border-gray-200 rounded-sm text-xs mx-4" placeholder="search"/> 
         </div>        
-        <h2 class="text-red-400">CART</h2>
-    </nav>
+        <h2 class="px-6 font-semibold">CART</h2>
+    </nav>    
 
     <main>
         {% block content %}
