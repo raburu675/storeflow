@@ -27,7 +27,7 @@
                     </div>
                     <div class="flex w-full justify-between">
                         <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Add to Cart</button>
-                        <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Buy Now</button>
+                        <a href="{% url 'product' product.id %}" class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Buy </a>
                     </div>
                 </div>
             {% else %}
@@ -39,7 +39,7 @@
                     <p class="text-xs font-semibold mb-2">price ksh :{{ product.price }}</p>
                     <div class="flex w-full justify-between">
                         <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Add to Cart</button>
-                        <button class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Buy Now</button>
+                        <a href="{% url 'product' product.id %}" class="px-8 py-1 text-xs bg-blue-700 text-white rounded hover:bg-blue-900 transition cursor-pointer">Buy</a>
                     </div>
                 </div>
             {% endif %}

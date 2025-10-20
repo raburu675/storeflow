@@ -3,7 +3,12 @@ from .models import Product
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages 
+from .forms import SignUpForm  # <-- CORRECT
 from django.contrib.auth.forms import UserCreationForm
+
+def product(request,pk):
+    product = Product.objects.get(id=pk)
+    return render(request,'files/product.html', {'product':product})
 
 def home(request):
     products = Product.objects.all().order_by("date")
@@ -39,17 +44,21 @@ def logout_user(request):
 
 def register_user(request):    
     if request.method == 'POST':    
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
+
+            #log in user
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,("registration succesfull") )
             return redirect('home')
-    else:
-        form = UserCreationForm()
-        
-    return render(request, 'files/register_user.html',{'form':form})
+        else:
+            message.success(request, ("whoops ! there was a problem, try again"))
+            return redirect('register')
+    else:         
+        form = SignUpForm() # <-- ADD THIS LINE      
+        return render(request, 'files/register_user.html',{'form':form})
     
