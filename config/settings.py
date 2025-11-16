@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'myapp', # Add your new app here
+    'cart', # Add your cart app here
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

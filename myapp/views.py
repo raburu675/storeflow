@@ -1,10 +1,24 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Categorie
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages 
 from .forms import SignUpForm  # <-- CORRECT
 from django.contrib.auth.forms import UserCreationForm
+
+def category(request,foo):
+    # replace hyphen on the url with spaces
+    foo = foo.replace('-', ' ')
+                                                      # foo = foo.replace('-', ' ').title()
+    #grab the category from the url
+    try:
+        #look up the category
+        category = Categorie.objects.get(name=foo)
+        products = Product.objects.filter(category=category)
+        return render(request, 'files/category.html' ,{'products':products, 'category':category})
+    except:
+        # messages.success(request, ('that category does not exist'))
+        return redirect('files/home.html')
 
 def product(request,pk):
     product = Product.objects.get(id=pk)

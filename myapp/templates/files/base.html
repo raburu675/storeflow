@@ -13,21 +13,46 @@
         
     </header>
 
-    <nav class='fixed top-0 z-50 w-full flex justify-between py-2 bg-blue-400 text-white '>
-        <div class="mx-4 flex items-center">
-            <h1 class="text-xl font-semibold mx-4 pY-6">DJANGO ECOMMERCE</h1>            
-            <a href="{% url 'home' %}" class="text-sm font-semibold mx-4">Home</a>
-            <a href="{% url 'about' %}" class="text-sm font-semibold mx-4">About</a>
-            <a href="{% url 'blog' %}" class="text-sm font-semibold mx-4">Blog</a>            
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="text-sm font-semibold mx-4">Logout</a>
-            {% else %}
-            <a href="{% url 'login' %}" class="text-sm font-semibold mx-4">Login</a>            
-            <a href="{% url 'register' %}" class="text-sm font-semibold mx-4">Register</a>            
-            {% endif %}           
-            <input class="px-6 border py-1 border-gray-200 rounded-sm text-xs mx-4" placeholder="search"/> 
-        </div>        
-        <h2 class="px-6 font-semibold">CART</h2>
+    <nav class='fixed top-0 z-50 w-full flex justify-between border border-b border-gray-200  '>
+        <div class="flex items-center w-full justify-between inset-0 shadow-2xl backdrop-blur-lg">
+            <h1 class="text-xl mx-4 text-red-900">STOREFLOW</h1>            
+            <a href="{% url 'home' %}" class="text-sm  ">Home</a>
+            <!-- <a href="{% url 'about' %}" class="text-sm  mx-4">About</a>
+            <a href="{% url 'blog' %}" class="text-sm mx-4">Blog</a>     -->
+            <div class="flex flex-col">
+            <!-- <button id="category-dropdown-btn" class="text-sm font-semibold p-2 focus:outline-none">
+                Category
+            </button> -->
+            <div class="flex mx-4 w-2/3">
+                <!-- <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Whisky</a>    
+                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Vodka</a>    
+                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Gin</a>    
+                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Spirit</a>    
+                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Champagne</a>     -->
+                <a href="{% url 'category' 'Red-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Red wine</a>    
+                <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">White wine</a>                  
+                <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Extras</a>                  
+            </div>
+            </div>        
+            <a href="{% url 'blog' %}" class="text-sm ">Blog</a>
+            <div class="flex justify-between">                  
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="text-sm mx-2">SignOut</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="text-sm mx-2 ">SignIn</a>            
+                <a href="{% url 'register' %}" class="text-sm mx-2">SignUp</a>            
+                {% endif %} 
+            </div>          
+            <div class="flex">
+                <input class="px-6 border py-1 mx-4 border-gray-200 rounded-sm text-xs " placeholder="search"/>                 
+                <a href="{% url 'cart_summary' %} " class="flex mx-4">                
+                    <img src="https://i.pinimgproxy.com/?url=aHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS8yNTYvMzE0NC8zMTQ0NDU2LnBuZw==&ts=1763291703&sig=4c8ade247a612d32898c681473686843dfcb4e87f9ceead9211a2589d5eaace5" alt="" class="h-4 bg-black"/>                                    
+                    <p class="text-xs">(0)</p>
+                </a>
+            </div>
+        </div>    
+         
+        
     </nav>    
 
     <main>
