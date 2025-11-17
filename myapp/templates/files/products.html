@@ -3,9 +3,132 @@
 {% block title %}Products{% endblock %}
 
 {% block content %}
+<!-- landing page -->
+<div>
+       <style>
+        /* Custom CSS for the Slideshow Container */
+        #slideshow-container {
+            /* Full viewport size */
+            height: 100vh;
+            width: 100vw;
+            /* Positions the content above the images */
+            position: relative;
+            /* Ensures images fill the screen */
+            overflow: hidden;
+        }
 
-    <div class="relative w-full">        
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 mt-24">
+        /* Styling for each slide image */
+        .slide-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 1.5s ease-in-out; /* Smooth transition for fading */
+            
+
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 4%;
+        }
+
+        /* Class to show the active slide */
+        .slide-image.active {
+            opacity: 1;
+        }
+    </style>
+
+            <!-- LANDING PAGE CONTAINER -->
+    <div id="slideshow-container" class="relative h-100vh w-full">
+        
+        <!-- SLIDE IMAGES (Background) -->
+        <!-- Image 1: Placeholder for Mountains -->
+        <!-- <div id="slide-1" class="slide-image active" style="background-image: url('https://i.pinimg.com/736x/56/1b/99/561b991379a139e6ecfbe67e54f5333c.jpg');"></div>                 -->
+        <div id="slide-2" class="slide-image" style="background-image: url('https://i.pinimg.com/736x/9b/99/9f/9b999f8086181b3677c1b3b351cf290c.jpg');"></div>                
+        <!-- <div id="slide-3" class="slide-image" style="background-image: url('https://i.pinimg.com/1200x/7c/9a/17/7c9a178ac97fc953168a78bc7fa20587.jpg');"></div> -->
+
+        <!-- OVERLAY AND CONTENT (Always on top) -->
+        <div class="absolute inset-0  bg-opacity-50 flex flex-col items-center justify-center p-4">            
+               <h2 class='text-5xl sm:text-7xl font-vollkorn my-12 text-center text-red-800 font-semibold z-20 text-yellow-700'>WELCOME</h2>
+                <p class='text-yellow-700 text-xs sm:text-lg mt-36 px-2 font-vollkorn leading-6'>
+                Do you dislike having to make the effort to visit a physical store
+                to get your favorite drinks? Look nowhere else! Our online liquor store
+                provides a wide range of alcoholic drinks in Kenya, including top
+                worldwide brands to local favorites. Purchase your preferred bottle of gin,whisky,
+                wine, or vodka by shopping with us at the RQ online liquor store.                
+                </p>
+                
+                <a href="#products" class='z-20 my-4 px-8 rounded-md py-2 text-center text-xs text-white font-semibold bg-yellow-700 '>FEATURED BRANDS</a>
+                
+        </div>
+
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.slide-image');
+        let currentImageIndex = 0;
+        const transitionTime = 5000; // Time in milliseconds (5 seconds)
+
+        // Function to show the next slide
+        function showNextSlide() {
+            // Remove 'active' class from the current image
+            images[currentImageIndex].classList.remove('active');
+
+            // Calculate the index of the next image
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+
+            // Add 'active' class to the new current image
+            images[currentImageIndex].classList.add('active');
+        }
+
+        // Start the slideshow when the window loads
+        window.onload = function() {
+            // Use setInterval to call showNextSlide every 'transitionTime' milliseconds
+            setInterval(showNextSlide, transitionTime);
+        };
+    </script>
+    </div>
+
+   
+    <div  class='flex z-10 flex-col items-center mt-20 sm:mt-40'>
+        <div class='pb-12 flex flex-col items-center mt-0 sm:mt-32'>
+            <img
+            class='h-16 my-4 mt-20 sm:mt-0'
+            src='https://img.icons8.com/?size=64&id=LNh13LMj9ZC0&format=png'
+            />
+            <h2 class='text-lg sm:text-2xl text-amber-700 font-medium text-center'>UNBEATABLE DISCOUNTS ON ALL PRODUCTS!</h2>
+            <p class='text-xs sm:text-lg mx-6 sm:mx-0 font-semibold text-center'>Create Account to get emails on the best bargains available!</p>
+        </div>
+
+        <div class='py-6 my-8 flex flex-col items-center w-full sm:w-1/3'>
+            <img
+            class='h-16 my-4'
+            src='https://img.icons8.com/?size=80&id=CdcGLl27q9DA&format=png'
+            />
+            <h2 class='text-lg sm:text-2xl text-amber-700 font-medium'>24/7 AVAILABILITY!</h2>
+            <p class='text-xs sm:text-2xl mx-6 sm:mx-0 font-semibold text-center'>
+                Always available, Look no further!
+                Reach out through our contact <br/>to get yours deliverred at ahwtaever premises in Nairobi and its environs!
+            </p>
+        </div>
+        
+        <div class='py-6 my-8 flex flex-col items-center w-full sm:w-1/3 '>
+            <img
+            class='h-16 my-4'
+            src='https://img.icons8.com/?size=80&id=V71BYaFrbA_7&format=png'
+            />
+            <h2 class='mx-6 sm:mx-0 text-lg sm:text-2xl text-amber-700 font-medium text-center'>DELIVERY AROUND NAIROBI AND IT'S ENVIRONS!</h2>
+            <p class='text-xs sm:text-2xl font-bold '>Free delivery on goods worth 5k and above</p>
+        </div>
+    </div>
+        
+
+   <!-- products section -->
+    <div id="products" class=" w-full ">  
+        <h1 class="text-2xl font-semibold text-center my-4">FEATURED BRANDS</h1>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 ">        
         {% for product in products %}
 
             {% if product.is_sale %}

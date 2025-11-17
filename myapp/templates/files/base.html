@@ -13,8 +13,61 @@
         
     </header>
 
-    <nav class='fixed top-0 z-50 w-full flex justify-between border border-b border-gray-200  '>
-        <div class="flex items-center w-full justify-between inset-0 shadow-2xl backdrop-blur-lg">
+    <nav class='fixed top-0 z-50 w-full flex flex-col justify-between border border-b border-gray-200  '>
+            <!-- mobile view dropdown menu -->
+            <div class="dropdown">
+                <div class="button">
+                    <span class="px-2 bg-black py-1 my-2 w-2"></span>
+                    <span class="px-2 bg-black py-1 my-2 w-2"></span>
+                    <span class="px-2 bg-black py-1 my-2 w-2"></span>
+                </div>
+                <div class="content">
+                    <a href="{% url 'home' %}" class="text-sm  ">Home</a>               
+                    <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm hover:text-red-900 mx-2">Champagne</a>    
+                    <a href="{% url 'category' 'Red-wine' %}" class="block px-4 py-2 text-sm  hover:text-red-900 mx-2">Red wine</a>    
+                    <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm  hover:text-red-900 mx-2">White wine</a>                  
+                </div>
+            </div>
+
+            <style>
+                .dropdown{
+                    display: inline-block;
+                    z-index: 999;
+                }
+                .dropdown .button{
+                    background-color: black;
+                    cursor: pointer;
+                }
+                .dropdown a{
+                    display: block;
+                    color: black;
+                    text-decoration: none;
+                }
+                .dropdown .content{
+                    display: none;
+                    position: absolute;
+                    min-width: 100px;
+                    background-color: brown;
+                }
+                .dropdown:hover .content{
+                    display: block;
+                }
+                .dropdown:hover .button{
+                    background-color: bisque;
+                }
+                .dropdown a:hover{
+                    background-color: aqua;
+                }
+                /* 👇 New CSS: Hide dropdown on big screens (e.g., above 768px) */
+                @media (min-width: 460px) {
+                    .dropdown {
+                        display: none;
+                    }
+                }
+            </style>
+
+
+        <div class="hidden sm:flex items-center w-full justify-between inset-0 shadow-2xl backdrop-blur-lg py-2 bg-white">
             <h1 class="text-xl mx-4 text-red-900">STOREFLOW</h1>            
             <a href="{% url 'home' %}" class="text-sm  ">Home</a>
             <!-- <a href="{% url 'about' %}" class="text-sm  mx-4">About</a>
@@ -23,30 +76,30 @@
             <!-- <button id="category-dropdown-btn" class="text-sm font-semibold p-2 focus:outline-none">
                 Category
             </button> -->
-            <div class="flex mx-4 w-2/3">
+            <div class="flex mx-4 ">
                 <!-- <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Whisky</a>    
                 <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Vodka</a>    
                 <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Gin</a>    
-                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Spirit</a>    
-                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Champagne</a>     -->
-                <a href="{% url 'category' 'Red-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Red wine</a>    
-                <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">White wine</a>                  
-                <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Extras</a>                  
+                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Spirit</a>     -->
+                <a href="{% url 'category' 'Champagne' %}" class="block px-4 py-2 text-sm hover:text-red-900 mx-2">Champagne</a>    
+                <a href="{% url 'category' 'Red-wine' %}" class="block px-4 py-2 text-sm  hover:text-red-900 mx-2">Red wine</a>    
+                <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm  hover:text-red-900 mx-2">White wine</a>                  
+                <!-- <a href="{% url 'category' 'White-wine' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 mx-2">Extras</a>                   -->
             </div>
             </div>        
-            <a href="{% url 'blog' %}" class="text-sm ">Blog</a>
+            <!-- <a href="{% url 'blog' %}" class="text-sm ">Blog</a> -->
             <div class="flex justify-between">                  
                 {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="text-sm mx-2">SignOut</a>
+                <a href="{% url 'logout' %}" class="text-sm mx-1">SignOut</a>
                 {% else %}
-                <a href="{% url 'login' %}" class="text-sm mx-2 ">SignIn</a>            
-                <a href="{% url 'register' %}" class="text-sm mx-2">SignUp</a>            
+                <a href="{% url 'login' %}" class="text-sm mx-1 ">SignIn</a>            
+                <a href="{% url 'register' %}" class="text-sm mx-1">SignUp</a>            
                 {% endif %} 
             </div>          
             <div class="flex">
                 <input class="px-6 border py-1 mx-4 border-gray-200 rounded-sm text-xs " placeholder="search"/>                 
                 <a href="{% url 'cart_summary' %} " class="flex mx-4">                
-                    <img src="https://i.pinimgproxy.com/?url=aHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS8yNTYvMzE0NC8zMTQ0NDU2LnBuZw==&ts=1763291703&sig=4c8ade247a612d32898c681473686843dfcb4e87f9ceead9211a2589d5eaace5" alt="" class="h-4 bg-black"/>                                    
+                    <img src="https://i.pinimg.com/736x/85/92/5a/85925a7545b28af1d3c284423f5cfb96.jpg" alt="" class="h-4"/>                                    
                     <p class="text-xs">(0)</p>
                 </a>
             </div>
@@ -55,6 +108,8 @@
         
     </nav>    
 
+
+
     <main>
         {% block content %}
         {% endblock %}
@@ -62,6 +117,8 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
+
+   
     
     {% block scripts %}
     {% endblock %}
